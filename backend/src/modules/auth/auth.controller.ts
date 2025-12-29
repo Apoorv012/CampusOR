@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { registerUser } from "./auth.service.js";
+import { registerUser, loginUser } from "./auth.service.js";
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -21,6 +21,29 @@ export const register = async (req: Request, res: Response) => {
   } catch (error: any) {
     return res.status(400).json({
       message: error.message || "Registration failed !",
+    });
+  }
+};
+
+export const login = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "email and password are required",
+      });
+    }
+
+    const result = await loginUser({ email, password });
+
+    return res.status(200).json({
+      message: "Login successful",
+      ...result, // { token, user }
+    });
+  } catch (error: any) {
+    return res.status(400).json({
+      message: error.message || "Login failed",
     });
   }
 };
