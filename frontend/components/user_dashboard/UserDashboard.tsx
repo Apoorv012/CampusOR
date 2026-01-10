@@ -242,10 +242,7 @@ export default function UserDashboard({
 
         {/* User Profile at Bottom */}
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-200 space-y-2">
-          <button className="w-full flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl transition-all duration-300 hover:scale-105">
-            <Settings className="w-5 h-5" />
-            <span>Settings</span>
-          </button>
+          
           <button className="w-full flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl transition-all duration-300 hover:scale-105">
             <LogOut className="w-5 h-5" />
             <span>Log out</span>
