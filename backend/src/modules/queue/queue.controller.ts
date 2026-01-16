@@ -155,7 +155,7 @@ export async function getQueueOperatorView(req: AuthRequest, res: Response) {
 }
 
 // 5: Get all queues for public listing
-export async function getQueuesForUsers(req: Request, res: Response) {
+export async function getQueuesForUsers(req: AuthRequest, res: Response) {
   try {
     const queues = await Queue.find({}).select(
       "name location isActive createdAt"

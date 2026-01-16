@@ -10,6 +10,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { userQueueService } from "../../../../../lib/services/userQueueService";
+import { apiService } from "@/app/services/api";
 
 // Types matching backend schema
 interface QueueHistoryItem {
@@ -91,13 +92,13 @@ export default function HistoryPage() {
       setLoading(true);
       setError(null);
 
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await apiService.get("/user-status/history", true);
+      console.log("history:", response);
+
       setHistoryData(mockHistoryData);
     } catch (err) {
       console.error("Error fetching queue history:", err);
       setError("Failed to load queue history. Please try again.");
-
-      setHistoryData(mockHistoryData);
     } finally {
       setLoading(false);
     }
